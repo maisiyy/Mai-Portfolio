@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Mai-Portfolio/static/css/main.85538b87.css",
+    "main.js": "/Mai-Portfolio/static/js/main.01dc71a6.js",
+    "index.html": "/Mai-Portfolio/index.html",
+    "main.85538b87.css.map": "/Mai-Portfolio/static/css/main.85538b87.css.map",
+    "main.01dc71a6.js.map": "/Mai-Portfolio/static/js/main.01dc71a6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.85538b87.css",
+    "static/js/main.01dc71a6.js"
+  ]
+}
