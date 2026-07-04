@@ -236,7 +236,7 @@ const Projects = () => {
                 borderTopRightRadius: '25px'
               }}>
                 <img 
-                  src={project.screenshot} 
+                  src={process.env.PUBLIC_URL + project.screenshot} 
                   alt={`${project.title} Screenshot`}
                   style={{
                     width: '100%',

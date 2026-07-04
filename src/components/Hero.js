@@ -297,7 +297,7 @@ const Hero = () => {
           }}>
             {/* Profile Picture */}
             <img 
-              src="/mai-profile.png"  // Replace with your image path
+              src={process.env.PUBLIC_URL + '/mai-profile.png'}
               alt="Siti Nur Maisarah"
               style={{
                 width: '100%',
