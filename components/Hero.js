@@ -1,7 +1,10 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { FaMoon, FaCode, FaPalette, FaGithub, FaLinkedin, FaArrowRight, FaDownload, FaItchIo } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
-const HERO_TEXTS = ['CS Student', 'Game Developer', 'Unity Developer'];
+const HERO_TEXTS = ['CS Student', 'Game Development', 'Unity Developer'];
 
 const Hero = () => {
   const [text, setText] = useState('');
@@ -42,7 +45,13 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" style={{
+    <motion.section
+    id="home"
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 1 }} 
+      style={{
       minHeight: '100vh',
       padding: '8rem 0 4rem',
       display: 'flex',
@@ -144,35 +153,38 @@ const Hero = () => {
               <FaCode /> View Projects
             </button>
             
-            <button 
-              onClick={() => scrollToSection('contact')}
-              style={{
-                padding: '1rem 2rem',
-                borderRadius: '50px',
-                border: '2px solid #4cc9f0',
-                background: 'transparent',
-                color: '#4cc9f0',
-                fontWeight: '600',
-                fontSize: '1rem',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
-                transition: 'all 0.3s ease'
-              }}
-              onPointerEnter={e => {
-                e.target.style.background = '#4cc9f0';
-                e.target.style.color = 'white';
-                e.target.style.transform = 'translateY(-3px)';
-              }}
-              onPointerLeave={e => {
-                e.target.style.background = 'transparent';
-                e.target.style.color = '#4cc9f0';
-                e.target.style.transform = 'translateY(0)';
-              }}
-            >
-              Contact Me <FaArrowRight />
-            </button>
+            <a 
+            href="https://wa.me/601116400484"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              padding: '1rem 2rem',
+              borderRadius: '50px',
+              border: '2px solid #4cc9f0',
+              background: 'transparent',
+              color: '#4cc9f0',
+              fontWeight: '600',
+              fontSize: '1rem',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              transition: 'all 0.3s ease',
+              textDecoration: 'none'
+            }}
+            onPointerEnter={e => {
+              e.target.style.background = '#4cc9f0';
+              e.target.style.color = 'white';
+              e.target.style.transform = 'translateY(-3px)';
+            }}
+            onPointerLeave={e => {
+              e.target.style.background = 'transparent';
+              e.target.style.color = '#4cc9f0';
+              e.target.style.transform = 'translateY(0)';
+            }}
+          >
+            Contact Me <FaArrowRight />
+          </a>
 
             <a
               href="/mai-cv.pdf"
@@ -297,7 +309,7 @@ const Hero = () => {
           }}>
             {/* Profile Picture */}
             <img 
-              src={process.env.PUBLIC_URL + '/mai-profile.png'}
+              src="/mai-profile.png"
               alt="Siti Nur Maisarah"
               style={{
                 width: '100%',
@@ -467,7 +479,7 @@ const Hero = () => {
           }
         }
       `}</style>
-    </section>
+    </motion.section>
   );
 };
 

@@ -1,3 +1,6 @@
+'use client';
+
+
 import React from 'react';
 import { FaGithub, FaExternalLinkAlt, FaCode, FaPalette, FaGamepad, FaBrain, FaUnity, FaServer } from 'react-icons/fa';
 import { SiMysql, SiPhp, SiPython } from 'react-icons/si';
@@ -5,6 +8,7 @@ import { DiFirebase } from 'react-icons/di';
 
 const Projects = () => {
   const projects = [
+    
     {
       title: "MY-HYGIENE: 2D Educational Game of Personal Hygiene",
       description: "2D educational game that uses real-time image processing with interactive2D educational game that uses real-time image processing to teach young learners essential personal hygiene practices such as handwashing, tooth brushing, and nail trimming through interactive, game-based learning.",
@@ -236,7 +240,7 @@ const Projects = () => {
                 borderTopRightRadius: '25px'
               }}>
                 <img 
-                  src={process.env.PUBLIC_URL + project.screenshot} 
+                  src={project.screenshot} 
                   alt={`${project.title} Screenshot`}
                   style={{
                     width: '100%',

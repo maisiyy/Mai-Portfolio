@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { FaMoon, FaSpotify, FaBars } from 'react-icons/fa';
 
@@ -66,8 +68,7 @@ const Header = ({ onToggleMusic, isMusicOpen }) => {
           {[
             { name: 'Home', id: 'home' },
             { name: 'Skills', id: 'skills' },
-            { name: 'Projects', id: 'projects' },
-            { name: 'Contact', id: 'contact' }
+            { name: 'Projects', id: 'projects' }
           ].map(item => (
             <button
               key={item.id}
@@ -150,8 +151,7 @@ const Header = ({ onToggleMusic, isMusicOpen }) => {
             {[
               { name: 'Home', id: 'home' },
               { name: 'Skills', id: 'skills' },
-              { name: 'Projects', id: 'projects' },
-              { name: 'Contact', id: 'contact' }
+              { name: 'Projects', id: 'projects' }
             ].map(item => (
               <button
                 key={item.id}

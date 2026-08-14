@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import './styles/App.css';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+'use client';
 
-function App() {
+import { useEffect, useState } from 'react';
+import Header from '../components/Header';
+import Hero from '../components/Hero';
+import Skills from '../components/Skills';
+import Projects from '../components/Projects';
+import Footer from '../components/Footer';
+
+
+export default function Home() {
   const [isMusicOpen, setIsMusicOpen] = useState(true);
 
   const toggleMusicPlayer = () => {
@@ -19,7 +20,6 @@ function App() {
   };
 
   useEffect(() => {
-    // Create stars
     const starsContainer = document.querySelector('.stars-container');
     if (starsContainer) {
       for (let i = 0; i < 100; i++) {
@@ -68,11 +68,9 @@ function App() {
 
   return (
     <div className="App">
-      {/* Night Sky Background */}
       <div className="stars-container"></div>
       <div className="moon" aria-hidden="true"></div>
-      
-      {/* Music Player */}
+
       <div className={`music-player ${isMusicOpen ? 'is-open' : 'is-closed'}`}>
         <div className="music-player__header">
           <div className="music-player__note">Hope you enjoy my song pick.</div>
@@ -96,15 +94,12 @@ function App() {
           title="Spotify Player"
         ></iframe>
       </div>
-      
+
       <Header onToggleMusic={toggleMusicPlayer} isMusicOpen={isMusicOpen} />
       <Hero />
       <Skills />
       <Projects />
-      <Contact />
       <Footer />
     </div>
   );
 }
-
-export default App;
