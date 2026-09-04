@@ -2,23 +2,19 @@
 
 import React, { useState } from 'react';
 import { FaMoon, FaSpotify, FaBars } from 'react-icons/fa';
+import { navigationItems } from '../src/data/portfolio';
+import { scrollToSection } from '../src/lib/scroll';
 
 const Header = ({ onToggleMusic, isMusicOpen }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
+  const navigateTo = (id) => {
+    scrollToSection(id);
     setIsMenuOpen(false);
   };
 
   return (
-    <nav style={{
+    <nav className="site-header" style={{
       position: 'fixed',
       top: 0,
       left: 0,
@@ -26,7 +22,7 @@ const Header = ({ onToggleMusic, isMusicOpen }) => {
       padding: '1.5rem 0',
       background: 'rgba(10, 10, 15, 0.9)',
       backdropFilter: 'blur(10px)',
-      zIndex: 1000,
+      zIndex: 1200,
       borderBottom: '1px solid rgba(255, 107, 157, 0.1)'
     }}>
       <div style={{
@@ -57,7 +53,7 @@ const Header = ({ onToggleMusic, isMusicOpen }) => {
             animation: 'moon-glow 3.5s ease-in-out infinite'
           }} />
           <span>MAI</span>
-          <span style={{ color: '#ff6b9d', fontSize: '1rem', marginLeft: '5px' }}>.dev</span>
+          <span style={{ color: '#ff6b9d', fontSize: '1rem', marginLeft: '5px' }}>Mazlan</span>
         </div>
 
         {/* Desktop Navigation */}
@@ -65,14 +61,10 @@ const Header = ({ onToggleMusic, isMusicOpen }) => {
           display: 'flex',
           gap: '2rem'
         }}>
-          {[
-            { name: 'Home', id: 'home' },
-            { name: 'Skills', id: 'skills' },
-            { name: 'Projects', id: 'projects' }
-          ].map(item => (
+          {navigationItems.map(item => (
             <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
+              key={item.target}
+              onClick={() => navigateTo(item.target)}
               style={{
                 background: 'none',
                 border: 'none',
@@ -93,7 +85,7 @@ const Header = ({ onToggleMusic, isMusicOpen }) => {
                 e.target.style.background = 'none';
               }}
             >
-              {item.name}
+              {item.label}
             </button>
           ))}
         </div>
@@ -148,14 +140,10 @@ const Header = ({ onToggleMusic, isMusicOpen }) => {
       {isMenuOpen && (
         <div className="mobile-menu-overlay" onClick={() => setIsMenuOpen(false)}>
           <div className="mobile-menu" onClick={e => e.stopPropagation()}>
-            {[
-              { name: 'Home', id: 'home' },
-              { name: 'Skills', id: 'skills' },
-              { name: 'Projects', id: 'projects' }
-            ].map(item => (
+            {navigationItems.map(item => (
               <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                key={item.target}
+                onClick={() => navigateTo(item.target)}
                 style={{
                   width: '100%',
                   textAlign: 'left',
@@ -169,7 +157,7 @@ const Header = ({ onToggleMusic, isMusicOpen }) => {
                   marginBottom: '0.5rem'
                 }}
               >
-                {item.name}
+                {item.label}
               </button>
             ))}
           </div>

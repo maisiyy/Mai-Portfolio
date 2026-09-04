@@ -26,6 +26,12 @@ body {
     color: white;
     overflow-x: hidden;
     min-height: 100vh;
+    scroll-behavior: smooth;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 92px;
 }
 
 /* Softer focus styles (avoid default outline box) */
@@ -47,6 +53,7 @@ a:focus-visible {
     height: 100%;
     z-index: -2;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .moon {
@@ -169,6 +176,7 @@ a:focus-visible {
 /* App Container */
 .App {
     position: relative;
+    isolation: isolate;
 }
 
 /* Music Player */
@@ -182,7 +190,7 @@ a:focus-visible {
     border-radius: 15px;
     border: 1px solid rgba(255, 107, 157, 0.3);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
+    z-index: 1100;
     overflow: hidden;
     transition: all 0.3s ease;
 }
@@ -221,7 +229,6 @@ a:focus-visible {
 .edu-timeline {
     margin-top: 5rem;
     padding: 3rem;
-    background: rgba(255, 107, 157, 0.05);
     border-radius: 20px;
     border: 1px solid rgba(255, 107, 157, 0.2);
     text-align: center;
@@ -429,6 +436,22 @@ a:focus-visible {
     margin-bottom: 0.5rem;
 }
 
+.edu-timeline__organization {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.edu-timeline__organization img {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 auto;
+    object-fit: contain;
+    padding: 0.25rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.95);
+}
+
 .edu-timeline__years {
     display: inline-block;
     padding: 0.25rem 0.6rem;
@@ -525,6 +548,131 @@ a:focus-visible {
 .music-player__close:hover {
     transform: scale(1.05);
     background: rgba(255, 107, 157, 0.3);
+}
+
+/* Shared interaction and section rhythm */
+.site-header {
+    isolation: isolate;
+}
+
+.site-section,
+.hero-section {
+    scroll-margin-top: 92px;
+}
+
+.hero-section {
+    position: relative;
+    z-index: 0;
+}
+
+.hero-content {
+    animation: section-enter 650ms cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.profile-container {
+    animation: section-enter 750ms 100ms cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.skill-card:focus-visible,
+.project-card:focus-visible {
+    outline: 2px solid #4cc9f0;
+    outline-offset: 4px;
+}
+
+.site-footer {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes section-enter {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 992px) {
+    .hero-section {
+        padding-top: 7rem !important;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr !important;
+        gap: 3rem !important;
+        text-align: center;
+    }
+
+    .hero-content > div[style*="justify-content: center"] {
+        justify-content: center;
+    }
+
+    .profile-container {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-header {
+        padding: 1rem 0 !important;
+    }
+
+    .hero-section {
+        min-height: auto !important;
+        padding: 6.5rem 0 3.5rem !important;
+    }
+
+    .hero-container {
+        padding: 0 1.25rem !important;
+        gap: 2.5rem !important;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2.45rem, 11vw, 3.35rem) !important;
+    }
+
+    .hero-content h2 {
+        font-size: 1.35rem !important;
+        min-height: 2.25rem !important;
+    }
+
+    .hero-content p {
+        font-size: 1.05rem !important;
+        margin-bottom: 2rem !important;
+    }
+
+    .profile-pic {
+        width: min(72vw, 290px) !important;
+        height: min(72vw, 290px) !important;
+    }
+
+    .hero-floating-tag {
+        right: 0 !important;
+        bottom: -2.5rem !important;
+        max-width: 90vw;
+        padding: .65rem 1rem !important;
+        font-size: .8rem !important;
+    }
+
+    .skills-section,
+    .projects-section {
+        padding: 4.5rem 0 !important;
+    }
+
+    .skills-section h2,
+    .projects-section h2 {
+        font-size: clamp(2.2rem, 10vw, 2.8rem) !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
 }
 
 /* Responsive */

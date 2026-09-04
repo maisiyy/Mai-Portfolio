@@ -5,84 +5,16 @@ import React from 'react';
 import { FaGithub, FaExternalLinkAlt, FaCode, FaPalette, FaGamepad, FaBrain, FaUnity, FaServer } from 'react-icons/fa';
 import { SiMysql, SiPhp, SiPython } from 'react-icons/si';
 import { DiFirebase } from 'react-icons/di';
+import { projects } from '../src/data/portfolio';
+
+const projectIcons = { gamepad: FaGamepad, server: FaServer, brain: FaBrain, code: FaCode };
+
+function ProjectIcon({ name }) {
+  const Icon = projectIcons[name] ?? FaCode;
+  return <Icon />;
+}
 
 const Projects = () => {
-  const projects = [
-    
-    {
-      title: "MY-HYGIENE: 2D Educational Game of Personal Hygiene",
-      description: "2D educational game that uses real-time image processing with interactive2D educational game that uses real-time image processing to teach young learners essential personal hygiene practices such as handwashing, tooth brushing, and nail trimming through interactive, game-based learning.",
-      tech: ["Unity", "C#", "Image Processing", "Mediapipe"],
-      icon: <FaGamepad />,
-      color: "#FF6B9D",
-      type: "Final Year Project",
-      features: ["Interactive Learning", "Image Signal Processing", "Child-friendly UI"],
-      github: "https://github.com/maisiyy",
-      demo: "#",
-      screenshot: "/project-screenshots/hygiene-game.png" // Add your screenshot path
-    },
-    {
-      title: "AEGIS: Escape Protocol",
-      description: "3D Game with interactive maps, AI enemies, mission objectives, and custom gameplay systems",
-      tech: ["Unity 3D", "C#", "AI Programming", "Game Design"],
-      icon: <FaGamepad />,
-      color: "#4CC9F0",
-      type: "Game Development",
-      features: ["3D Environment", "AI Enemies", "Custom Mechanics", "Mission System"],
-      github: "https://maisiyy.itch.io/aegis-escape-protocol",
-      demo: "#",
-      screenshot: "/project-screenshots/aegis-game.png"
-    },
-    {
-      title: "E-Blood Donation System",
-      description: "Web-based system to assist people in registering as blood donors and ease the donation process",
-      tech: ["PHP", "MySQL", "HTML/CSS", "JavaScript"],
-      icon: <FaServer />,
-      color: "#A3D9A5",
-      type: "Diploma Final Project",
-      features: ["Database Management", "User Registration", "Admin Dashboard", "Donation Tracking"],
-      github: "https://github.com/maisiyy/E-Blood-Donation.git",
-      demo: "#",
-      screenshot: "/project-screenshots/blood-donation.png"
-    },
-    {
-      title: "Language Learning VR App",
-      description: "VR Application for language learning with object interaction, compatible with Oculus devices",
-      tech: ["Unity", "VR Development", "C#", "Oculus SDK"],
-      icon: <FaBrain />,
-      color: "#FFD166",
-      type: "VR Application",
-      features: ["Immersive Learning", "Hand Interaction", "Multi-language", "Oculus Compatible"],
-      github: "https://github.com/maisiyy/VR_Vocabulary-Exploration-in-Classroom.git",
-      demo: "#",
-      screenshot: "/project-screenshots/vr-app.JPG"
-    },
-    {
-      title: "Badang: Multiversal Destiny",
-      description: "2D action-adventure game that takes players on a thrilling journey through multiple universes",
-      tech: ["Unity 2D", "C#", "Game Design", "Pixel Art"],
-      icon: <FaGamepad />,
-      color: "#06D6A0",
-      type: "Game Development",
-      features: ["Multi-universe Gameplay", "Action Mechanics", "Story-driven", "Immersive World"],
-      github: "https://github.com/maisiyy/2D-Game-Badang-Multiversal-Destiny.git",
-      demo: "#",
-      screenshot: "/project-screenshots/badang-game.png"
-    },
-    {
-      title: "Personal Portfolio Website",
-      description: "Responsive portfolio website showcasing multimedia projects and technical skills",
-      tech: ["React", "JavaScript", "CSS3", "Responsive Design"],
-      icon: <FaCode />,
-      color: "#EF476F",
-      type: "Web Development",
-      features: ["Responsive Design", "Interactive UI", "Project Showcase", "Modern Design"],
-      github: "https://github.com/maisiyy/portfolio",
-      demo: "#",
-      screenshot: "/project-screenshots/portfolioo.JPG"
-    }
-  ];
-
   const getTechIcon = (techName) => {
     const icons = {
       'Unity': <FaUnity />,
@@ -112,34 +44,11 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" style={{
+    <section id="projects" className="site-section projects-section" style={{
       padding: '6rem 0',
-      background: 'linear-gradient(to bottom, rgba(10, 10, 15, 0.9), rgba(15, 12, 41, 0.95))',
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* Background Decorative Elements */}
-      <div style={{
-        position: 'absolute',
-        top: '50px',
-        right: '50px',
-        width: '300px',
-        height: '300px',
-        background: 'radial-gradient(circle, rgba(255, 107, 157, 0.1) 0%, rgba(255, 107, 157, 0) 70%)',
-        borderRadius: '50%',
-        filter: 'blur(20px)'
-      }}></div>
-      <div style={{
-        position: 'absolute',
-        bottom: '100px',
-        left: '50px',
-        width: '200px',
-        height: '200px',
-        background: 'radial-gradient(circle, rgba(76, 201, 240, 0.1) 0%, rgba(76, 201, 240, 0) 70%)',
-        borderRadius: '50%',
-        filter: 'blur(15px)'
-      }}></div>
-
       <div style={{
         maxWidth: '1400px',
         margin: '0 auto',
@@ -159,7 +68,6 @@ const Projects = () => {
             background: 'rgba(255, 107, 157, 0.1)',
             color: '#ff6b9d',
             padding: '0.8rem 1.5rem',
-            borderRadius: '50px',
             fontWeight: '600',
             marginBottom: '1.5rem',
             border: '1px solid rgba(255, 107, 157, 0.3)',
@@ -167,7 +75,7 @@ const Projects = () => {
           }}>
             <FaCode /> MY WORK
           </div>
-          
+
           <h2 style={{
             fontSize: '3.5rem',
             marginBottom: '1rem',
@@ -178,7 +86,7 @@ const Projects = () => {
           }}>
             Featured <span style={{ fontWeight: '800' }}>Projects</span>
           </h2>
-          
+
           <p style={{
             color: '#b0b0b0',
             fontSize: '1.2rem',
@@ -186,8 +94,8 @@ const Projects = () => {
             margin: '0 auto',
             lineHeight: '1.6'
           }}>
-            A showcase of my academic and personal projects spanning <span style={{ color: '#4cc9f0', fontWeight: '600' }}>Game Development</span>, 
-            <span style={{ color: '#ff6b9d', fontWeight: '600' }}> Web Applications</span>, and 
+            A showcase of my academic and personal projects spanning <span style={{ color: '#4cc9f0', fontWeight: '600' }}>Game Development</span>,
+            <span style={{ color: '#ff6b9d', fontWeight: '600' }}> Web Applications</span>, and
             <span style={{ color: '#ffd166', fontWeight: '600' }}> Interactive Multimedia</span>.
           </p>
         </div>
@@ -313,7 +221,7 @@ const Projects = () => {
                     color: project.color,
                     border: `1px solid ${project.color}20`
                   }}>
-                    {project.icon}
+                    <ProjectIcon name={project.icon} />
                   </div>
                   
                   <div style={{ flex: 1 }}>

@@ -3,8 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import { FaMoon, FaCode, FaPalette, FaGithub, FaLinkedin, FaArrowRight, FaDownload, FaItchIo } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { heroRoles, heroStats, socialLinks } from '../src/data/portfolio';
+import { scrollToSection } from '../src/lib/scroll';
 
-const HERO_TEXTS = ['CS Student', 'Game Development', 'Unity Developer'];
+const socialIcons = { github: FaGithub, linkedin: FaLinkedin, itch: FaItchIo };
+const getSocialIcon = (name) => {
+  const Icon = socialIcons[name];
+  return <Icon />;
+};
 
 const Hero = () => {
   const [text, setText] = useState('');
@@ -14,7 +20,7 @@ const Hero = () => {
 
   useEffect(() => {
     const typeWriter = () => {
-      const currentText = HERO_TEXTS[textIndex];
+      const currentText = heroRoles[textIndex];
       
       if (!isDeleting && charIndex < currentText.length) {
         setText(currentText.substring(0, charIndex + 1));
@@ -26,7 +32,7 @@ const Hero = () => {
         setTimeout(() => setIsDeleting(true), 2000);
       } else if (isDeleting && charIndex === 0) {
         setIsDeleting(false);
-        setTextIndex((textIndex + 1) % HERO_TEXTS.length);
+        setTextIndex((textIndex + 1) % heroRoles.length);
       }
     };
 
@@ -34,30 +40,22 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, [charIndex, isDeleting, textIndex]);
 
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  };
-
   return (
     <motion.section
-    id="home"
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 1 }} 
+      id="home"
+      className="hero-section"
+      // Keep the server-rendered hero visible. An initial opacity of zero makes
+      // the entire introduction disappear whenever client hydration is delayed.
+      initial={false}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
       style={{
       minHeight: '100vh',
       padding: '8rem 0 4rem',
       display: 'flex',
       alignItems: 'center'
     }}>
-      <div style={{
+      <div className="hero-container" style={{
         maxWidth: '1400px',
         margin: '0 auto',
         padding: '0 2rem',
@@ -67,7 +65,7 @@ const Hero = () => {
         alignItems: 'center'
       }}>
         {/* Left Content */}
-        <div>
+        <div className="hero-content">
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -80,9 +78,7 @@ const Hero = () => {
             marginBottom: '2rem',
             border: '1px solid rgba(255, 107, 157, 0.3)'
           }}>
-            <span></span>
-            <span>Hello, I'm</span>
-            <span>✨</span>
+            <span>Hi! I'm</span>
           </div>
 
           <h1 style={{
@@ -113,10 +109,10 @@ const Hero = () => {
             lineHeight: '1.8',
             maxWidth: '600px'
           }}>
-            Final-year Computer Science student (Graphic & Multimedia Technology) seeking an internship from <span style={{ color: '#4cc9f0', fontWeight: '600' }}>March - August 2026</span>.
-            <br />
-            Equipped with technical skills in <span style={{ color: '#ff6b9d', fontWeight: '600' }}>Graphic & Multimedia</span>, I am eager to contribute to innovative software and game development projects.
-          </p>
+      <>A Computer Science graduate specializing in Graphic & Multimedia Technology, with hands-on experience in{' '} <span style={{ color: '#82fff2', fontWeight: '600' }}>software development, game development, and networking.</span> 
+      {' '}Passionate about building creative, functional, and user-focused digital experiences.
+      </>         
+      </p>
 
           {/* Buttons */}
           <div style={{
@@ -142,12 +138,12 @@ const Hero = () => {
                 transition: 'all 0.3s ease'
               }}
               onPointerEnter={e => {
-                e.target.style.transform = 'translateY(-3px)';
-                e.target.style.boxShadow = '0 10px 30px rgba(255, 107, 157, 0.3)';
+                e.currentTarget.style.transform = 'translateY(-3px)';
+                e.currentTarget.style.boxShadow = '0 10px 30px rgba(255, 107, 157, 0.3)';
               }}
               onPointerLeave={e => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = 'none';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
               }}
             >
               <FaCode /> View Projects
@@ -173,14 +169,14 @@ const Hero = () => {
               textDecoration: 'none'
             }}
             onPointerEnter={e => {
-              e.target.style.background = '#4cc9f0';
-              e.target.style.color = 'white';
-              e.target.style.transform = 'translateY(-3px)';
+              e.currentTarget.style.background = '#4cc9f0';
+              e.currentTarget.style.color = 'white';
+              e.currentTarget.style.transform = 'translateY(-3px)';
             }}
             onPointerLeave={e => {
-              e.target.style.background = 'transparent';
-              e.target.style.color = '#4cc9f0';
-              e.target.style.transform = 'translateY(0)';
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.color = '#4cc9f0';
+              e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
             Contact Me <FaArrowRight />
@@ -205,14 +201,14 @@ const Hero = () => {
                 transition: 'all 0.3s ease'
               }}
               onPointerEnter={e => {
-                e.target.style.background = '#ffd166';
-                e.target.style.color = '#1a1a2e';
-                e.target.style.transform = 'translateY(-3px)';
+                e.currentTarget.style.background = '#ffd166';
+                e.currentTarget.style.color = '#1a1a2e';
+                e.currentTarget.style.transform = 'translateY(-3px)';
               }}
               onPointerLeave={e => {
-                e.target.style.background = 'transparent';
-                e.target.style.color = '#ffd166';
-                e.target.style.transform = 'translateY(0)';
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = '#ffd166';
+                e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
               <FaDownload /> Download CV
@@ -226,11 +222,11 @@ const Hero = () => {
             flexWrap: 'wrap',
             marginBottom: '3rem'
           }}>
-            {[
+            {heroStats/*[
               { value: '4+', label: 'Years' },
               { value: '15+', label: 'Projects' },
               { value: 'Unity • UI/UX', label: 'Interests' }
-            ].map((stat, index) => (
+            ]*/.map((stat, index) => (
               <div key={index} style={{ textAlign: 'center' }}>
                 <div style={{
                   fontSize: '2.5rem',
@@ -250,11 +246,11 @@ const Hero = () => {
 
           {/* Social */}
           <div style={{ display: 'flex', gap: '1rem' }}>
-            {[
+            {socialLinks/*[
               { icon: <FaGithub />, color: '#333', url: 'https://github.com/maisiyy' },
               { icon: <FaLinkedin />, color: '#0077b5', url: 'https://www.linkedin.com/in/siti-nur-maisarah-ba225123a/' },
               { icon: <FaItchIo  />, color: '#e4405f', url: 'https://maisiyy.itch.io/' }
-            ].map((social, index) => (
+            ]*/.map((social, index) => (
               <a
                 key={index}
                 href={social.url}
@@ -274,29 +270,29 @@ const Hero = () => {
                   transition: 'all 0.3s ease'
                 }}
                 onPointerEnter={e => {
-                  e.target.style.background = social.color;
-                  e.target.style.transform = 'translateY(-5px)';
+                  e.currentTarget.style.background = social.color;
+                  e.currentTarget.style.transform = 'translateY(-5px)';
                 }}
                 onPointerLeave={e => {
-                  e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                  e.target.style.transform = 'translateY(0)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
-                {social.icon}
+                {getSocialIcon(social.icon)}
               </a>
             ))}
           </div>
         </div>
 
         {/* Right Side - Your Picture */}
-        <div style={{
+        <div className="profile-container" style={{
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           position: 'relative'
         }}>
           {/* Profile Picture Container */}
-          <div style={{
+          <div className="profile-pic" style={{
             width: '350px',
             height: '350px',
             position: 'relative',
@@ -346,7 +342,7 @@ const Hero = () => {
           </div>
 
           {/* Decorative Elements */}
-          <div style={{
+          <div className="hero-floating-tag" style={{
             position: 'absolute',
             top: '20px',
             right: '20px',

@@ -3,9 +3,8 @@ import { FaMoon, FaHeart } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer style={{
+    <footer className="site-footer" style={{
       padding: '4rem 0 2rem',
-      background: 'rgba(10, 10, 15, 0.9)',
       borderTop: '1px solid rgba(255, 107, 157, 0.1)',
       textAlign: 'center'
     }}>
@@ -29,25 +28,14 @@ const Footer = () => {
             filter: 'drop-shadow(0 0 8px rgba(255, 246, 196, 0.9))',
             animation: 'moon-glow 3.5s ease-in-out infinite'
           }} />
-          <span>MAI</span>
-          <span style={{ color: '#ff6b9d', fontSize: '1rem' }}>.dev</span>
+          <span>Mai</span>
+          <span style={{ color: '#ff6b9d', fontSize: '1rem' }}>Mazlan</span>
         </div>
         
         <p style={{ color: '#b0b0b0', marginBottom: '1rem' }}>
-          © 2026 Luna. All rights reserved.
+          © 2026 Mai. All rights reserved.
         </p>
         
-        
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '10px',
-          color: '#ff6b9d',
-          fontWeight: '500'
-        }}>
-          Made with <FaHeart style={{ animation: 'heartbeat 1.5s infinite' }} />
-        </div>
       </div>
       
       <style>{`

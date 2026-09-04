@@ -1,0 +1,79 @@
+.section {
+  padding: 6rem 0;
+}
+
+.container {
+  width: min(100% - 2.5rem, 1000px);
+  margin: 0 auto;
+}
+
+.heading { text-align: center; margin-bottom: 4rem; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .55rem; padding: .7rem 1.1rem;
+  border: 1px solid rgba(76, 201, 240, .35); border-radius: 999px;
+  color: #4cc9f0; background: rgba(76, 201, 240, .08); font-size: .8rem; font-weight: 700;
+  letter-spacing: .09em;
+}
+.heading h2 { margin: 1.25rem 0 .8rem; font-size: clamp(2.4rem, 6vw, 3.6rem); color: white; }
+.heading h2 span { color: #ff6b9d; }
+.heading p { color: #b0b0b0; font-size: 1.1rem; }
+
+.timeline { position: relative; padding-left: 3.5rem; }
+
+.line {
+  position: absolute;
+  top: 2.95rem;
+  left: 1rem;
+  width: 2px;
+  height: calc(100% - 5rem);
+  transform-origin: top;
+  background: linear-gradient(#4cc9f0, #ff6b9d);
+}
+
+.card {
+  position: relative; padding: 2rem; border: 1px solid rgba(76, 201, 240, .24); border-radius: 22px;
+  background: rgba(26, 26, 46, .72); box-shadow: 0 18px 45px rgba(0, 0, 0, .18); backdrop-filter: blur(12px);
+}
+.marker {
+  position: absolute; top: 2rem; left: -3.3rem; width: 2.1rem; height: 2.1rem; display: grid; place-items: center;
+  border: 3px solid #10101d; border-radius: 50%; color: white; background: linear-gradient(135deg, #4cc9f0, #ff6b9d);
+  box-shadow: 0 0 0 5px rgba(76, 201, 240, .12);
+}
+.cardHeader { display: grid; gap: .65rem; }
+.period { display: flex; align-items: center; gap: .55rem; margin: 0; color: #4cc9f0; font-weight: 600; }
+.cardHeader h3 { margin: 0; color: white; font-size: 1.6rem; }
+
+.companyLine {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+
+.company {
+  display: flex; align-items: center; gap: .55rem;
+  margin: 0;
+  color: #ffd166;
+  font-weight: 600;
+}
+
+.companyLogo {
+  display: block;
+  width: auto;
+  height: 1.8rem;
+  max-width: 6rem;
+  object-fit: contain;
+}
+
+.summary { margin: 1.4rem 0 0; color: #c7c7c7; line-height: 1.7; }
+.responsibilities { display: grid; gap: .9rem; padding: 0; margin: 1.5rem 0 0; list-style: none; }
+.responsibilities li { display: flex; gap: .75rem; align-items: flex-start; color: #d4d4d4; line-height: 1.65; }
+.responsibilities svg { flex: 0 0 auto; margin-top: .35rem; color: #4cc9f0; font-size: .8rem; }
+
+@media (max-width: 600px) {
+  .section { padding: 4.5rem 0; }
+  .timeline { padding-left: 2.8rem; }
+  .marker { left: -2.65rem; }
+  .card { padding: 1.4rem; }
+  .period, .company { align-items: flex-start; font-size: .92rem; }
+}

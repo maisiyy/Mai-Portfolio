@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Skills from '../components/Skills';
+import Experience from '../components/Experience';
 import Projects from '../components/Projects';
 import Footer from '../components/Footer';
 
@@ -68,7 +69,7 @@ export default function Home() {
 
   return (
     <div className="App">
-      <div className="stars-container"></div>
+      <div className="stars-container" aria-hidden="true"></div>
       <div className="moon" aria-hidden="true"></div>
 
       <div className={`music-player ${isMusicOpen ? 'is-open' : 'is-closed'}`}>
@@ -98,6 +99,7 @@ export default function Home() {
       <Header onToggleMusic={toggleMusicPlayer} isMusicOpen={isMusicOpen} />
       <Hero />
       <Skills />
+      <Experience />
       <Projects />
       <Footer />
     </div>

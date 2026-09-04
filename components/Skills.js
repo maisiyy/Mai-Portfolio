@@ -4,43 +4,28 @@
 import React from 'react';
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJs, FaPython, FaFigma, FaGitAlt, FaBootstrap, FaMobileAlt, FaImage, FaVrCardboard, FaCamera } from 'react-icons/fa';
 import { SiStreamlit, SiMicrosoftazure, SiGooglecloud, SiAmazonaws, SiUnity, SiAutodesk, SiAdobephotoshop, SiCanva, SiMysql, SiAnaconda, SiJupyter, SiLooker, SiFirebase } from 'react-icons/si';
+import { educationYears, skills } from '../src/data/portfolio';
+
+const skillIconComponents = {
+  react: FaReact, javascript: FaJs, node: FaNodeJs, html: FaHtml5, css: FaCss3Alt,
+  python: FaPython, figma: FaFigma, git: FaGitAlt, bootstrap: FaBootstrap, mobile: FaMobileAlt,
+  camera: FaCamera, streamlit: SiStreamlit, azure: SiMicrosoftazure, googleCloud: SiGooglecloud,
+  aws: SiAmazonaws, firebase: SiFirebase, unity: SiUnity, vr: FaVrCardboard, autodesk: SiAutodesk,
+  photoshop: SiAdobephotoshop, image: FaImage, canva: SiCanva, mysql: SiMysql, anaconda: SiAnaconda,
+  jupyter: SiJupyter, looker: SiLooker,
+};
+
+function SkillIcon({ icon }) {
+  const Icon = skillIconComponents[icon];
+  return <Icon />;
+}
 
 const Skills = () => {
-  const skills = [
-    { icon: <FaReact />, name: 'React', color: '#61DAFB' },
-    { icon: <FaJs />, name: 'JavaScript', color: '#F7DF1E' },
-    { icon: <FaNodeJs />, name: 'Node.js', color: '#339933' },
-    { icon: <FaHtml5 />, name: 'HTML5', color: '#E34F26' },
-    { icon: <FaCss3Alt />, name: 'CSS3', color: '#1572B6' },
-    { icon: <FaPython />, name: 'Python', color: '#3776AB' },
-    { icon: <FaFigma />, name: 'Figma', color: '#F24E1E' },
-    { icon: <FaGitAlt />, name: 'Git', color: '#F05032' },
-    { icon: <FaBootstrap />, name: 'Bootstrap', color: '#7952B3' },
-    { icon: <FaMobileAlt />, name: 'React Native', color: '#61DAFB' },
-    { icon: <FaCamera />, name: 'Mediapipe', color: '#ff8fab' },
-    { icon: <SiStreamlit />, name: 'Streamlit', color: '#ff4b4b' },
-    { icon: <SiMicrosoftazure />, name: 'Azure', color: '#0078d4' },
-    { icon: <SiGooglecloud />, name: 'Google Cloud', color: '#4285f4' },
-    { icon: <SiAmazonaws />, name: 'AWS', color: '#ff9900' },
-    { icon: <SiFirebase />, name: 'Firebase', color: '#ffca28' },
-    { icon: <SiUnity />, name: 'Unity', color: '#bdbdbd' },
-    { icon: <FaVrCardboard />, name: 'Pano2VR', color: '#b388ff' },
-    { icon: <SiAutodesk />, name: 'Autodesk Maya', color: '#00bcd4' },
-    { icon: <SiAdobephotoshop />, name: 'Photoshop', color: '#31a8ff' },
-    { icon: <FaImage />, name: 'PhotoScape', color: '#f48fb1' },
-    { icon: <SiCanva />, name: 'Canva', color: '#7c4dff' },
-    { icon: <SiMysql />, name: 'MySQL', color: '#00758f' },
-    { icon: <SiAnaconda />, name: 'Anaconda Navigator', color: '#44a833' },
-    { icon: <SiJupyter />, name: 'Jupyter Notebook', color: '#f37626' },
-    { icon: <SiLooker />, name: 'Looker Studio', color: '#4fc3f7' },
-  ];
-
   const marqueeSkills = [...skills, ...skills];
 
   return (
-    <section id="skills" style={{
+    <section id="skills" className="site-section skills-section" style={{
       padding: '6rem 0',
-      background: 'rgba(10, 10, 15, 0.5)',
       scrollMarginTop: '80px' // This helps with fixed header
     }}>
       <div style={{
@@ -62,6 +47,7 @@ const Skills = () => {
             {marqueeSkills.map((skill, index) => (
             <div
               key={index}
+              className="skill-card"
               style={{
                 background: 'rgba(26, 26, 46, 0.7)',
                 borderRadius: '20px',
@@ -72,12 +58,12 @@ const Skills = () => {
                 minWidth: '220px'
               }}
               onPointerEnter={e => {
-                e.target.style.transform = 'translateY(-10px)';
-                e.target.style.boxShadow = `0 10px 30px ${skill.color}40`;
+                e.currentTarget.style.transform = 'translateY(-8px)';
+                e.currentTarget.style.boxShadow = `0 10px 30px ${skill.color}40`;
               }}
               onPointerLeave={e => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = 'none';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
               }}
             >
               <div style={{
@@ -96,7 +82,7 @@ const Skills = () => {
                   fontSize: '1.8rem',
                   color: skill.color
                 }}>
-                  {skill.icon}
+                  <SkillIcon icon={skill.icon} />
                 </div>
                 <div style={{ flex: 1 }}>
                   <h3 style={{
@@ -118,7 +104,7 @@ const Skills = () => {
           <h3 className="edu-timeline__title">Education Timeline</h3>
           <div className="edu-timeline__gantt">
             <div className="edu-timeline__gantt-axis" aria-hidden="true">
-              {['2021', '2022', '2023', '2024', '2025', '2026'].map((year) => (
+              {educationYears.map((year) => (
                 <div key={year} className="edu-timeline__tick">
                   <span className="edu-timeline__tick-line"></span>
                   <span className="edu-timeline__tick-label">{year}</span>
@@ -129,7 +115,10 @@ const Skills = () => {
             <div className="edu-timeline__row">
               <div className="edu-timeline__row-label">
                 <span className="edu-timeline__label">Diploma in Computer Science</span>
-                <span className="edu-timeline__school">Universiti Malaysia Pahang Al Sultan Abdullah</span>
+                <div className="edu-timeline__organization">
+                  <img src="/logos/umpsa.png" alt="UMPSA logo" />
+                  <span className="edu-timeline__school">Universiti Malaysia Pahang Al Sultan Abdullah</span>
+                </div>
               </div>
               <div className="edu-timeline__row-track">
                 <div className="edu-timeline__bar edu-timeline__bar--diploma">
@@ -141,7 +130,10 @@ const Skills = () => {
             <div className="edu-timeline__row">
               <div className="edu-timeline__row-label">
                 <span className="edu-timeline__label">Bachelor of Computer Science (Graphics & Multimedia Technology) with Honors</span>
-                <span className="edu-timeline__school">Universiti Malaysia Pahang Al Sultan Abdullah</span>
+                <div className="edu-timeline__organization">
+                  <img src="/logos/umpsa.png" alt="UMPSA logo" />
+                  <span className="edu-timeline__school">Universiti Malaysia Pahang Al Sultan Abdullah</span>
+                </div>
               </div>
               <div className="edu-timeline__row-track">
                 <div className="edu-timeline__bar edu-timeline__bar--degree">
