@@ -2,12 +2,13 @@
 
 
 import React from 'react';
-import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJs, FaPython, FaFigma, FaGitAlt, FaBootstrap, FaMobileAlt, FaImage, FaVrCardboard, FaCamera } from 'react-icons/fa';
-import { SiStreamlit, SiMicrosoftazure, SiGooglecloud, SiAmazonaws, SiUnity, SiAutodesk, SiAdobephotoshop, SiCanva, SiMysql, SiAnaconda, SiJupyter, SiLooker, SiFirebase } from 'react-icons/si';
+import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJs, FaPython, FaFigma, FaGitAlt, FaBootstrap, FaMobileAlt, FaImage, FaVrCardboard, FaCamera, FaCode } from 'react-icons/fa';
+import { SiStreamlit, SiMicrosoftazure, SiGooglecloud, SiAmazonaws, SiUnity, SiAutodesk, SiAdobephotoshop, SiCanva, SiMysql, SiAnaconda, SiJupyter, SiLooker, SiFirebase, SiTailwindcss, SiPhp, SiLaravel, SiSharp, SiMicrosoftsqlserver } from 'react-icons/si';
 import { educationYears, skills } from '../src/data/portfolio';
 
 const skillIconComponents = {
   react: FaReact, javascript: FaJs, node: FaNodeJs, html: FaHtml5, css: FaCss3Alt,
+  tailwind: SiTailwindcss, php: SiPhp, laravel: SiLaravel, csharp: SiSharp, sqlserver: SiMicrosoftsqlserver,
   python: FaPython, figma: FaFigma, git: FaGitAlt, bootstrap: FaBootstrap, mobile: FaMobileAlt,
   camera: FaCamera, streamlit: SiStreamlit, azure: SiMicrosoftazure, googleCloud: SiGooglecloud,
   aws: SiAmazonaws, firebase: SiFirebase, unity: SiUnity, vr: FaVrCardboard, autodesk: SiAutodesk,
@@ -16,7 +17,7 @@ const skillIconComponents = {
 };
 
 function SkillIcon({ icon }) {
-  const Icon = skillIconComponents[icon];
+  const Icon = skillIconComponents[icon] ?? FaCode;
   return <Icon />;
 }
 

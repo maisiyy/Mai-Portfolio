@@ -411,7 +411,7 @@ const Hero = () => {
             gap: '8px'
           }}>
             <span role="img" aria-label="sparkle" style={{ fontSize: '1.2rem' }}>🍓</span>
-            <span>People often call me Mai!</span>
+            <span>You can call me Mai!</span>
             <span role="img" aria-label="matcha" style={{ fontSize: '1.2rem' }}>🍵</span>
           </div>
         </div>
