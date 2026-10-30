@@ -22,7 +22,13 @@ code {
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+    background-color: #02030a;
+    background-image:
+        radial-gradient(ellipse at 74% 18%, rgba(20, 94, 190, 0.2), transparent 34%),
+        radial-gradient(ellipse at 18% 48%, rgba(0, 177, 190, 0.12), transparent 38%),
+        radial-gradient(ellipse at 83% 69%, rgba(0, 115, 171, 0.13), transparent 35%),
+        radial-gradient(ellipse at 45% 95%, rgba(18, 82, 153, 0.15), transparent 40%),
+        linear-gradient(145deg, #02030a 0%, #070813 52%, #03030a 100%);
     color: white;
     overflow-x: hidden;
     min-height: 100vh;
@@ -51,9 +57,58 @@ a:focus-visible {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2;
+    z-index: -1;
     overflow: hidden;
     pointer-events: none;
+}
+
+.stars-container::before {
+    position: absolute;
+    inset: -18%;
+    background:
+        radial-gradient(ellipse at 70% 25%, rgba(0, 184, 255, .11), transparent 28%),
+        radial-gradient(ellipse at 35% 67%, rgba(0, 255, 204, .07), transparent 30%);
+    content: '';
+    animation: nebula-breathe 18s ease-in-out infinite alternate;
+}
+
+/* Distant planetary paths and a soft, colorful nebula */
+.orbit-field {
+    position: fixed;
+    z-index: -1;
+    top: 38vh;
+    left: 72vw;
+    width: min(76vw, 880px);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%) rotate(-18deg);
+    pointer-events: none;
+    opacity: 0.72;
+    animation: orbit-drift 150s linear infinite;
+}
+
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgba(82, 225, 255, 0.22);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 18px rgba(38, 205, 255, 0.09), inset 0 0 18px rgba(38, 205, 255, 0.04);
+}
+
+.orbit--one { width: 58%; height: 24%; }
+.orbit--two { width: 82%; height: 37%; border-color: rgba(94, 217, 255, 0.18); transform: translate(-50%, -50%) rotate(42deg); }
+.orbit--three { width: 96%; height: 51%; border-color: rgba(68, 255, 204, 0.16); transform: translate(-50%, -50%) rotate(-34deg); }
+
+.orbit-planet {
+    position: absolute;
+    top: 29%;
+    left: 72%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #a9f2ff;
+    box-shadow: 0 0 9px 3px rgba(101, 215, 255, 0.6), 0 0 28px 8px rgba(0, 196, 255, 0.34);
 }
 
 .moon {
@@ -113,6 +168,16 @@ a:focus-visible {
 @keyframes twinkle {
     0%, 100% { opacity: 0.2; }
     50% { opacity: 1; }
+}
+
+@keyframes nebula-breathe {
+    from { opacity: .5; transform: scale(.96); }
+    to { opacity: 1; transform: scale(1.04); }
+}
+
+@keyframes orbit-drift {
+    from { transform: translate(-50%, -50%) rotate(-18deg); }
+    to { transform: translate(-50%, -50%) rotate(342deg); }
 }
 
 @keyframes moon-drift {
@@ -177,6 +242,61 @@ a:focus-visible {
 .App {
     position: relative;
     isolation: isolate;
+}
+
+html[data-galaxy-theme='quiet'] body {
+    background-image: linear-gradient(145deg, #02030a, #050711 55%, #02030a);
+}
+
+html[data-galaxy-theme='quiet'] .stars-container::before {
+    display: none;
+}
+
+html[data-galaxy-theme='quiet'] .star {
+    animation: none;
+    opacity: .55;
+}
+
+html[data-galaxy-theme='quiet'] .orbit-field,
+html[data-galaxy-theme='quiet'] .moon {
+    animation-play-state: paused;
+    opacity: 0;
+}
+
+.back-to-top {
+    position: fixed;
+    z-index: 1050;
+    bottom: 24px;
+    left: 24px;
+    display: grid;
+    width: 46px;
+    height: 46px;
+    place-items: center;
+    border: 1px solid rgba(74, 228, 255, .42);
+    border-radius: 50%;
+    color: #80f4ff;
+    background: rgba(3, 12, 25, .88);
+    box-shadow: 0 0 20px rgba(0, 210, 255, .16);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity .3s ease, transform .3s ease, box-shadow .3s ease;
+    backdrop-filter: blur(12px);
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    box-shadow: 0 0 28px rgba(0, 225, 255, .35);
+}
+
+@media (max-width: 768px) {
+    .back-to-top { bottom: 18px; left: 16px; width: 42px; height: 42px; }
 }
 
 /* Music Player */
@@ -688,5 +808,12 @@ a:focus-visible {
         height: 70px;
         top: 6%;
         left: -20vw;
+    }
+
+    .orbit-field {
+        top: 27vh;
+        left: 75vw;
+        width: 125vw;
+        opacity: 0.52;
     }
 }

@@ -118,7 +118,7 @@ const Skills = () => {
                 <span className="edu-timeline__label">Diploma in Computer Science</span>
                 <div className="edu-timeline__organization">
                   <img src="/logos/umpsa.png" alt="UMPSA logo" />
-                  <span className="edu-timeline__school">Universiti Malaysia Pahang Al Sultan Abdullah</span>
+                  <span className="edu-timeline__school">Universiti Malaysia Pahang Al-Sultan Abdullah</span>
                 </div>
               </div>
               <div className="edu-timeline__row-track">
@@ -133,7 +133,7 @@ const Skills = () => {
                 <span className="edu-timeline__label">Bachelor of Computer Science (Graphics & Multimedia Technology) with Honors</span>
                 <div className="edu-timeline__organization">
                   <img src="/logos/umpsa.png" alt="UMPSA logo" />
-                  <span className="edu-timeline__school">Universiti Malaysia Pahang Al Sultan Abdullah</span>
+                  <span className="edu-timeline__school">Universiti Malaysia Pahang Al-Sultan Abdullah</span>
                 </div>
               </div>
               <div className="edu-timeline__row-track">

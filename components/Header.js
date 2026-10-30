@@ -5,7 +5,7 @@ import { FaMoon, FaSpotify, FaBars } from 'react-icons/fa';
 import { navigationItems } from '../src/data/portfolio';
 import { scrollToSection } from '../src/lib/scroll';
 
-const Header = ({ onToggleMusic, isMusicOpen }) => {
+const Header = ({ onToggleMusic, isMusicOpen, onToggleGalaxy, isGalaxyEnabled }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigateTo = (id) => {
@@ -25,7 +25,7 @@ const Header = ({ onToggleMusic, isMusicOpen }) => {
       zIndex: 1200,
       borderBottom: '1px solid rgba(255, 107, 157, 0.1)'
     }}>
-      <div style={{
+      <div className="site-header__inner" style={{
         maxWidth: '1400px',
         margin: '0 auto',
         padding: '0 2rem',
@@ -97,6 +97,30 @@ const Header = ({ onToggleMusic, isMusicOpen }) => {
           alignItems: 'center'
         }}>
           <button
+            className="galaxy-toggle"
+            type="button"
+            onClick={onToggleGalaxy}
+            aria-pressed={isGalaxyEnabled}
+            aria-label={isGalaxyEnabled ? 'Turn galaxy effects off' : 'Turn galaxy effects on'}
+            title={isGalaxyEnabled ? 'Galaxy effects on' : 'Galaxy effects off'}
+            style={{
+              width: '44px',
+              height: '44px',
+              display: 'grid',
+              placeItems: 'center',
+              borderRadius: '50%',
+              border: '1px solid rgba(83, 231, 255, 0.25)',
+              background: isGalaxyEnabled ? 'rgba(28, 192, 221, 0.12)' : 'rgba(255, 255, 255, 0.06)',
+              color: isGalaxyEnabled ? '#62f2ed' : '#a8b2c7',
+              fontSize: '1.1rem',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
+            }}
+          >
+            <span aria-hidden="true">✦</span>
+          </button>
+          <button
+            className="spotify-toggle"
             onClick={onToggleMusic}
             aria-pressed={isMusicOpen}
             aria-label={isMusicOpen ? 'Hide Spotify player' : 'Show Spotify player'}
@@ -172,6 +196,24 @@ const Header = ({ onToggleMusic, isMusicOpen }) => {
         }
 
         @media (max-width: 768px) {
+          .site-header__inner {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+          }
+
+          .site-header__inner > div:last-child {
+            gap: 0.45rem !important;
+          }
+
+          .galaxy-toggle {
+            width: 38px !important;
+            height: 38px !important;
+          }
+
+          .spotify-toggle {
+            padding: 0.65rem 0.8rem !important;
+          }
+
           .nav-desktop {
             display: none;
           }

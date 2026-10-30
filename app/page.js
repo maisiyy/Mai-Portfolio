@@ -7,10 +7,13 @@ import Skills from '../components/Skills';
 import Experience from '../components/Experience';
 import Projects from '../components/Projects';
 import Footer from '../components/Footer';
+import { FaArrowUp } from 'react-icons/fa';
 
 
 export default function Home() {
   const [isMusicOpen, setIsMusicOpen] = useState(true);
+  const [isGalaxyEnabled, setIsGalaxyEnabled] = useState(true);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   const toggleMusicPlayer = () => {
     setIsMusicOpen((prev) => !prev);
@@ -21,8 +24,20 @@ export default function Home() {
   };
 
   useEffect(() => {
+    document.documentElement.dataset.galaxyTheme = isGalaxyEnabled ? 'active' : 'quiet';
+  }, [isGalaxyEnabled]);
+
+  useEffect(() => {
+    const onScroll = () => setShowBackToTop(window.scrollY > 450);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
     const starsContainer = document.querySelector('.stars-container');
     if (starsContainer) {
+      starsContainer.replaceChildren();
       for (let i = 0; i < 100; i++) {
         const star = document.createElement('div');
         star.className = 'star';
@@ -69,6 +84,12 @@ export default function Home() {
 
   return (
     <div className="App">
+      <div className="orbit-field" aria-hidden="true">
+        <span className="orbit orbit--one"></span>
+        <span className="orbit orbit--two"></span>
+        <span className="orbit orbit--three"></span>
+        <span className="orbit-planet"></span>
+      </div>
       <div className="stars-container" aria-hidden="true"></div>
       <div className="moon" aria-hidden="true"></div>
 
@@ -96,12 +117,27 @@ export default function Home() {
         ></iframe>
       </div>
 
-      <Header onToggleMusic={toggleMusicPlayer} isMusicOpen={isMusicOpen} />
+      <Header
+        onToggleMusic={toggleMusicPlayer}
+        isMusicOpen={isMusicOpen}
+        onToggleGalaxy={() => setIsGalaxyEnabled((enabled) => !enabled)}
+        isGalaxyEnabled={isGalaxyEnabled}
+      />
       <Hero />
       <Skills />
       <Experience />
       <Projects />
       <Footer />
+      <button
+        type="button"
+        className={`back-to-top ${showBackToTop ? 'is-visible' : ''}`}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        aria-label="Back to top"
+        title="Back to top"
+        tabIndex={showBackToTop ? 0 : -1}
+      >
+        <FaArrowUp aria-hidden="true" />
+      </button>
     </div>
   );
 }
