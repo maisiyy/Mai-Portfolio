@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { FaBriefcase, FaCalendarAlt, FaCheck } from 'react-icons/fa';
 import { experiences } from '../src/data/portfolio';
+import { asset } from '../src/lib/asset';
 import styles from './Experience.module.css';
 
 const reveal = {
@@ -57,7 +58,7 @@ export default function Experience() {
                   <p className={styles.company}>
                     <img
                       className={styles.companyLogo}
-                      src={experience.logos[0].src}
+                      src={asset(experience.logos[0].src)}
                       alt={experience.logos[0].alt}
                     />
                     {experience.company}

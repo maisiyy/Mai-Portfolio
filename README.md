@@ -1,51 +1,44 @@
-# 🌙 Mai's Portfolio 
+# 🌙 Mai's Portfolio
 
-Welcome to my personal portfolio website! 
+My personal portfolio site: skills, work experience, and projects across web development, game development, and VR.
 
-### Frontend
-- **React** - Component-based UI framework
-- **JavaScript (ES6+)** - Modern JavaScript features
-- **CSS3** - Custom animations and responsive design
-- **HTML5** - Semantic markup
+**Live site:** https://maisiyy.github.io/Mai-Portfolio/
 
-## 🛠️ Installation & Setup
+## Tech stack
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/maisiyy/Mai-Portfolio.git
-   cd mai-portfolio-react
-   ```
+- **Next.js** (App Router, static export)
+- **React**
+- **Three.js** via `@react-three/fiber` and `@react-three/drei`
+- **Framer Motion** for animation
+- **React Icons**
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+## Running locally
 
-3. **Start development server**
-   ```bash
-   npm start
-   ```
+```bash
+git clone https://github.com/maisiyy/Mai-Portfolio.git
+cd Mai-Portfolio
+npm install
+npm run dev
+```
 
-4. **Open in browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
----
+Then open http://localhost:3000.
 
-### Analyzing the Bundle Size
+## Building
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm run build
+```
 
-### Making a Progressive Web App
+This produces a static site in `out/` (`output: 'export'` in `next.config.mjs`).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Deployment
 
-### Advanced Configuration
+Every push to `master` is built and deployed to GitHub Pages by
+[`.github/workflows/nextjs.yml`](.github/workflows/nextjs.yml). The workflow's
+`configure-pages` step sets the `/Mai-Portfolio` base path automatically.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Editing content
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+All portfolio content (experience, skills, projects, social links) lives in
+[`src/data/portfolio.js`](src/data/portfolio.js). The components only handle
+how it's displayed, so most updates only touch that one file.

@@ -122,12 +122,10 @@ export const projects = [
     description: '3D game with interactive maps, AI enemies, mission objectives, and custom gameplay systems.',
     tech: ['Unity 3D', 'C#', 'AI Programming', 'Game Design'],
     icon: 'gamepad',
-    // Changed from #4CC9F0, which was identical to the PC Inventory card.
     color: '#5E81F4',
     type: 'Game Development',
     features: ['3D Environment', 'AI Enemies', 'Custom Mechanics', 'Mission System'],
-    github: 'https://maisiyy.itch.io/aegis-escape-protocol',
-    demo: '#',
+    demo: 'https://maisiyy.itch.io/aegis-escape-protocol',
     screenshot: '/project-screenshots/aegis-game.png',
   },
   {

@@ -1,10 +1,10 @@
 'use client';
 
-
 import React from 'react';
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJs, FaPython, FaFigma, FaGitAlt, FaBootstrap, FaMobileAlt, FaImage, FaVrCardboard, FaCamera, FaCode } from 'react-icons/fa';
 import { SiStreamlit, SiMicrosoftazure, SiGooglecloud, SiAmazonaws, SiUnity, SiAutodesk, SiAdobephotoshop, SiCanva, SiMysql, SiAnaconda, SiJupyter, SiLooker, SiFirebase, SiTailwindcss, SiPhp, SiLaravel, SiSharp, SiMicrosoftsqlserver } from 'react-icons/si';
 import { educationYears, skills } from '../src/data/portfolio';
+import { asset } from '../src/lib/asset';
 
 const skillIconComponents = {
   react: FaReact, javascript: FaJs, node: FaNodeJs, html: FaHtml5, css: FaCss3Alt,
@@ -25,77 +25,27 @@ const Skills = () => {
   const marqueeSkills = [...skills, ...skills];
 
   return (
-    <section id="skills" className="site-section skills-section" style={{
-      padding: '6rem 0',
-      scrollMarginTop: '80px' // This helps with fixed header
-    }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 2rem'
-      }}>
-        <h2 style={{
-          fontSize: '3rem',
-          textAlign: 'center',
-          marginBottom: '4rem',
-          color: 'white'
-        }}>
-          <span style={{ color: '#ff6b9d' }}></span> Tech Stack & Skills
-        </h2>
+    <section id="skills" className="site-section skills-section">
+      <div className="section-container">
+        <div className="section-heading">
+          <span className="eyebrow">What I work with</span>
+          <h2>Tech Stack &amp; <span className="shimmer-text">Skills</span></h2>
+        </div>
 
         <div className="skills-marquee">
           <div className="skills-marquee__track" aria-label="Tech stack list">
             {marqueeSkills.map((skill, index) => (
-            <div
-              key={index}
-              className="skill-card"
-              style={{
-                background: 'rgba(26, 26, 46, 0.7)',
-                borderRadius: '20px',
-                padding: '1.5rem',
-                border: '1px solid rgba(255, 107, 157, 0.2)',
-                transition: 'all 0.3s ease',
-                cursor: 'pointer',
-                minWidth: '220px'
-              }}
-              onPointerEnter={e => {
-                e.currentTarget.style.transform = 'translateY(-8px)';
-                e.currentTarget.style.boxShadow = `0 10px 30px ${skill.color}40`;
-              }}
-              onPointerLeave={e => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem',
-              }}>
-                <div style={{
-                  width: '50px',
-                  height: '50px',
-                  background: `${skill.color}20`,
-                  borderRadius: '12px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '1.8rem',
-                  color: skill.color
-                }}>
+              <div
+                key={index}
+                className="skill-card"
+                style={{ '--skill': skill.color }}
+                aria-hidden={index >= skills.length ? 'true' : undefined}
+              >
+                <div className="skill-card__icon">
                   <SkillIcon icon={skill.icon} />
                 </div>
-                <div style={{ flex: 1 }}>
-                  <h3 style={{
-                    fontSize: '1.2rem',
-                    color: 'white',
-                    marginBottom: 0
-                  }}>
-                    {skill.name}
-                  </h3>
-                </div>
+                <h3 className="skill-card__name">{skill.name}</h3>
               </div>
-            </div>
             ))}
           </div>
         </div>
@@ -117,7 +67,7 @@ const Skills = () => {
               <div className="edu-timeline__row-label">
                 <span className="edu-timeline__label">Diploma in Computer Science</span>
                 <div className="edu-timeline__organization">
-                  <img src="/logos/umpsa.png" alt="UMPSA logo" />
+                  <img src={asset('/logos/umpsa.png')} alt="UMPSA logo" />
                   <span className="edu-timeline__school">Universiti Malaysia Pahang Al-Sultan Abdullah</span>
                 </div>
               </div>
@@ -130,9 +80,9 @@ const Skills = () => {
 
             <div className="edu-timeline__row">
               <div className="edu-timeline__row-label">
-                <span className="edu-timeline__label">Bachelor of Computer Science (Graphics & Multimedia Technology) with Honors</span>
+                <span className="edu-timeline__label">Bachelor of Computer Science (Graphics &amp; Multimedia Technology) with Honors</span>
                 <div className="edu-timeline__organization">
-                  <img src="/logos/umpsa.png" alt="UMPSA logo" />
+                  <img src={asset('/logos/umpsa.png')} alt="UMPSA logo" />
                   <span className="edu-timeline__school">Universiti Malaysia Pahang Al-Sultan Abdullah</span>
                 </div>
               </div>
@@ -144,7 +94,6 @@ const Skills = () => {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );
